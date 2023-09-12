@@ -24,31 +24,31 @@ Algoritma pencarian graf lain dalam kecerdasan buatan yang menjelajahi ruang pen
 
 1. Menginisiasi array visited dan queue dalam keadaan kosong 
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/4bf2a712-3319-47b8-8d87-9556d442876b/Untitled.png)
+![BFS1](images/BFS%201.png)
 
 2. Push node 0 ke dalam queue dan tandai sebagai node yang telah dikunjungi
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/961d3b6f-7217-47fe-999e-a68479e22637/Untitled.png)
+![BFS2](images/BFS%202.png)
 
 3. Hapus node 0 dari bagian depan queue dan kunjungi tetangga yang belum dikunjungi, kemudian masukkan mereka ke dalam queue
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/59bebf41-c7b4-4fb4-b028-8d2d5acc7704/Untitled.png)
+![BFS3](images/BFS%203.png)
 
 4. Hapus node 1 dari bagian depan queue dan kunjungi tetangga yang belum dikunjungi, kemudian masukkan mereka ke dalam queue.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/790897ca-1293-4f7d-8680-3e71d3de6cf9/Untitled.png)
+![BFS4](images/BFS%204.png)
 
 5. Hapus node 2 dari bagian depan queue dan kunjungi tetangga yang belum dikunjungi, kemudian masukkan mereka ke dalam queue.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/6bf4057f-d5e1-4024-bf20-d10ea751d2bc/Untitled.png)
+![BFS5](images/BFS%205.png)
 
 6. Hapus node 3 dari bagian depan queue dan kunjungi tetangga yang belum dikunjungi, kemudian masukkan mereka ke dalam queue. Namun, karena semua tetangga dari node 3 sudah dikunjungi, maka lanjutkan ke node berikutnya yang ada di depan queue.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/8a7e08fd-d28e-4dcd-a490-d7986b275784/Untitled.png)
+![BFS6](images/BFS%206.png)
 
 7. Hapus node 4 dari bagian depan queue dan kunjungi tetangga yang belum dikunjungi, kemudian masukkan mereka ke dalam queue. Namun, karena semua tetangga dari node 4 sudah dikunjungi, maka lanjutkan ke simpul berikutnya yang ada di depan queue.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/9298b3dd-5178-4465-8fc1-969f12d22d8a/Untitled.png)
+![BFS7](images/BFS%207.png)
 
 ### Kelebihan dan Kekurangan
 
@@ -126,27 +126,27 @@ Depth-First Search (DFS) adalah algoritma pencarian yang bertujuan untuk mengeks
 
 1. Menginisialisasi array untuk visited dan stack dalam keadaan kosong
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/13f993ce-69fd-45c7-9aaf-df126b5bb7ad/Untitled.png)
+![DFS1](images/DFS%201.png)
 
 2. Kunjungi node 0 dan masukkan node-node yang bersebelahan dengan node 0 yang belum dikunjungi ke dalam stack
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/36fd9146-0b43-4915-a9d7-6223acd4c93f/Untitled.png)
+![DFS2](images/DFS%202.png)
 
 3. Sekarang, node 1 berada di bagian atas tumpukan (stack), jadi kunjungi node 1, keluarkan node tersebut dari stack, dan masukkan semua node yang bersebelahan dengan node 1 yang belum dikunjungi ke dalam stack
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/1d438932-5ae3-4704-bba0-2f2aac894dea/Untitled.png)
+![DFS3](images/DFS%203.png)
 
 4. Sekarang, node 2 berada di bagian atas tumpukan (stack), jadi kunjungi node 2, keluarkan node tersebut dari stack, dan masukkan semua node yang bersebelahan dengan node 2 yang belum dikunjungi ke dalam stack (yaitu, node 3 dan 4)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/83da8b7f-38e1-4fe5-9e0b-ccd41324af1d/Untitled.png)
+![DFS4](images/DFS%204.png)
 
 5. Sekarang, node 4 berada di bagian atas tumpukan (stack), jadi kunjungi node 4, keluarkan node tersebut dari tumpukan, dan masukkan semua node yang bersebelahan dengan node 4 yang belum dikunjungi ke dalam stack
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/fb9fe143-92b1-4f62-a6a2-1d834fa592c5/Untitled.png)
+![DFS5](images/DFS%205.png)
 
 6. Sekarang, node 3 berada di bagian atas tumpukan (stack), jadi kunjungi node 3, keluarkan simpul tersebut dari stack, dan masukkan semua node yang bersebelahan dengan node 3 yang belum dikunjungi ke dalam stack.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/60516be6-68b5-400f-b95b-5851265f7ee4/Untitled.png)
+![DFS6](images/DFS%206.png)
 
 ### Kelebihan dan Kekurangan
 
@@ -411,7 +411,7 @@ A* (A-star) adalah algoritma pencarian berinformasi yang digunakan untuk menemuk
 4. A* secara iteratif memilih simpul dengan **f(n)** terendah untuk dieksplorasi. Jika simpul tersebut adalah solusi, pencarian selesai. Jika tidak, algoritma melanjutkan dengan mengeksplorasi simpul-simpul lain.
 5. Pencarian dilanjutkan hingga solusi ditemukan atau tidak ada simpul yang tersisa untuk dieksplorasi.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/d0e5d162-ed4d-4b8e-b3b5-0cd3e477a166/Untitled.png)
+![A](images/A.png)
 
 ### Kelebihan dan Kelemahan
 
@@ -504,7 +504,7 @@ Best-First Search (BFS) adalah algoritma pencarian yang mengambil pendekatan heu
 4. Proses ini terus berlanjut hingga pencarian mencapai simpul tujuan atau tidak ada simpul yang tersisa untuk dieksplorasi.
 5. BFS dapat berhenti ketika simpul tujuan pertama kali ditemukan, tetapi ini mungkin bukan solusi optimal.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/116aec36-c393-4b5a-831c-2e72bd095d75/Untitled.png)
+![BestFS](images/BestFS.png)
 
 **Contoh Study Case**
 
@@ -616,7 +616,7 @@ Greedy Search adalah jenis algoritma pencarian yang memilih simpul berikutnya be
 
 Temukan jalur dari S ke G menggunakan pencarian Greedy (Greedy Search). Nilai heuristik h dari setiap simpul ada di bawah nama simpul tersebut.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d1fc6281-6a49-4c50-a763-eb2ab191304b/d8dc96f6-5c3c-4778-9574-aa36830493c7/Untitled.png)
+![GreedyS](images/GreedyS.png)
 
 **Solusi**
 
