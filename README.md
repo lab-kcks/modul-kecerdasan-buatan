@@ -1,5 +1,5 @@
-# Modul_Kecerdasan_Buatan
-# Pre-Read_Materials_Praktikum_Kecerdasan_Buatan
+# Modul Kecerdasan Buatan
+**Pre-Read Materials Praktikum Kecerdasan Buatan**
 
 ## Modul 1 - Algoritma Searching
 Modul ini membahas tentang algoritma pencarian, salah satu konsep dasar dalam pemrograman dan ilmu komputer. Anda akan mempelajari berbagai algoritma pencarian yang digunakan untuk mencari elemen tertentu dalam kumpulan data.
