@@ -20,8 +20,8 @@ Modul ini fokus pada pra-pemrosesan data dan visualisasi, langkah awal yang pent
 - https://www.datacamp.com/cheat-sheet/data-viz-cheat-sheet
 - https://www.datacamp.com/blog/infographic-data-cleaning-checklist
 - https://datavizcatalogue.com/index.html
-- https://www.data-to-viz.com/How To Choose Dataviz
-- [How to Choose Data Visualization](https://d3c33hcgiwev3.cloudfront.net/XsaUfemhQ-qGlH3poXPqMg_4b74b6280a7a4a10a83e6b5ca9138630_How-to-choose-a-data-visualization.pdf?Expires=1710288000&Signature=KpPGC4IqurROnARVVsJlDJjsmzuScbCRFlrWy6vf~W-91f23mlP5ywkQ7idRnCRiAOT93N5OKv33KNjK2S5hWL4GezLckkRJEQqWKW030v8OW1x1pg1kJ0LG8fZqPjOcvymBL0g1QP8EuS~MTPaB71QE37itJ6-AdjpEI2C6Q6M_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A)
+- https://www.data-to-viz.com/ To Choose Dataviz
+
 
 ## Modul 4 - Supervised Learning
 Modul ini membahas pembelajaran terawasi, di mana model dipelajari dari data yang berlabel. Anda akan belajar tentang berbagai algoritma pembelajaran terawasi, seperti regresi linier, k-NN, dan pohon keputusan, serta cara menerapkannya dalam pemecahan masalah prediksi.
