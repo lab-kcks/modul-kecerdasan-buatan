@@ -24,7 +24,7 @@ Modul ini fokus pada pra-pemrosesan data dan visualisasi, langkah awal yang pent
 - [Supervised Learning](https://www.datacamp.com/blog/supervised-machine-learning)
 
 
-## Modul 4 - 
+## Modul 4 - Unsupervised Learning
 Modul ini memperkenalkan pembelajaran tak terawasi, di mana model belajar dari data tanpa label. Anda akan belajar tentang teknik-teknik seperti klastering dan reduksi dimensi, serta bagaimana menerapkannya dalam mengidentifikasi pola yang tersembunyi dalam data.
 
 - [Unsupervised Learning](https://www.datacamp.com/blog/introduction-to-unsupervised-learning)
