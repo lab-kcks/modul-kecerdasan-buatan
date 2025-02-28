@@ -1,7 +1,10 @@
 [project]
-name = "modul-kecerdasan-buatan-2025"
+name = "modul-kecerdasan-buatan"
 version = "0.1.0"
-description = "Modul Praktikum Kecerdasan Buatan 2025"
+description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "ipykernel>=6.29.5",
+    "torch>=2.6.0",
+]
