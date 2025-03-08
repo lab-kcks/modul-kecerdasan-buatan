@@ -1,5 +1,6 @@
 # Modul Kecerdasan Buatan 2025
 
+- [Modul 2: Supervised Learning](./modul-2/README.md)
 - [Modul 6: Pre-trained Model & LLM](./modul-6/README.md)
 
 ## Cara Menjalankan Environment & Run Notebook
