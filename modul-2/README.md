@@ -11,7 +11,6 @@ src: https://www.datacamp.com/blog/supervised-machine-learning
 - [Supervised Learning](#supervised-learning)
     1. [Regresi](#regresi)
     2. [Klasifikasi](#klasifikasi)
-- [Evaluation Metrics (Supervised Learning)](#evaluation-metrics)
 
 <p align="center">
     <img src="./images/supervised_desc.png" width='750'>
