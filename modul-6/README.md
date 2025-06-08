@@ -2,7 +2,7 @@
 
 ## Pre-trained Model
 
-*Pre-trained model,* seperti namanya 
+*Pre-trained model,* seperti namanya
 adalah model yang telah dilatih sebelumnya menggunakan kumpulan data yang sangat besar. Model ini sudah memiliki bobot (*weights*) dan bias yang telah disesuaikan untuk menyelesaikan tugas tertentu, sehingga dapat digunakan kembali untuk berbagai keperluan tanpa harus melatih model dari nol.
 
 Dengan memanfaatkan *pre-trained model*, kita dapat:
@@ -48,7 +48,6 @@ Transformer, arsitektur *Neural Network* yang mengubah NLP hingga bagaimana duni
 
 Arsitektur Transformer terdiri dari 2 pilar penting yaitu `Encoder` dan `Decoder`. Encoder bertugas untuk membaca dan memproses input dan mengubahnya ke dalam format yang dipahami oleh model. Lebih mudahnya, encoder bertugas untuk merangkum input menjadi inti sari yang lebih mudah diproses oleh model. Sedangkan Decoder bertugas untuk memproses informasi dan menyusun informasi tersebut untuk menjadi output. Dalam arti lain, Decoder bertugas seperti seorang pembicara yang menggunakan pemahaman dari encoder untuk menyusun kembali informasi tersebut menjadi kalimat yang baru. Berikut adalah contoh penggunaan transformer dalam konteks translator bahasa:
 
-
 > Encoder mendengar sebuah cerita dalam bahasa asing, memahami maknanya tanpa perlu mengingat kata demi kata secara harfiah, lalu decoder menyampaikan kembali cerita tersebut dalam bahasa yang berbeda dengan tetap mempertahankan makna aslinya.
 
 #### Encoder
@@ -70,10 +69,9 @@ Decoder menggunakan representasi yang dihasilkan oleh encoder untuk menghasilkan
 
 Proses masking pada decoder sangat penting untuk tugas-tugas generatif karena memastikan bahwa prediksi pada posisi tertentu hanya bergantung pada informasi sebelumnya, bukan yang akan datang.
 
-
 #### Positional Encoding
 
-Karena Transformer tidak mengandalkan urutan alami dari data (seperti urutan waktu pada RNN), informasi posisi token ditambahkan secara eksplisit melalui positional encoding. Vektor ini menggunakan fungsi sinus dan cosinus untuk memberikan “koordinat” yang unik pada tiap token sehingga model dapat memahami urutan kata dalam kalimat. Tanpa Positional Encoding, model tidak akan bisa membedakan kalimat "Sigra makan ayam" dengan "Ayam makan Sigra" atau "Makan ayam Sigra". 
+Karena Transformer tidak mengandalkan urutan alami dari data (seperti urutan waktu pada RNN), informasi posisi token ditambahkan secara eksplisit melalui positional encoding. Vektor ini menggunakan fungsi sinus dan cosinus untuk memberikan “koordinat” yang unik pada tiap token sehingga model dapat memahami urutan kata dalam kalimat. Tanpa Positional Encoding, model tidak akan bisa membedakan kalimat "Sigra makan ayam" dengan "Ayam makan Sigra" atau "Makan ayam Sigra".
 
 #### Attention Mechanism
 
@@ -89,13 +87,13 @@ FFN bisa dianalogikan seperti seorang koki yang sedang menyempurnakan masakan se
 
 Untuk mengatasi `Vanishing Gradient` dan menjaga stabilitas selama training, setiap sub-layer (misalnya, Attention dan Feed Forward Network) disertai dengan residual connection yang kemudian dinormalisasi dengan Normalization Layer. Memastikan bahwa informasi penting tidak hilang seiring bertambahnya layer.
 
-[Klik untuk penjelasan lebih lanjut mengenai Transformer Layer.](code/transformer.ipynb) 
+[Klik untuk penjelasan lebih lanjut mengenai Transformer.](code/transformer.ipynb)
 
 ### Large Language Model
 
 ![LLM Rank](./images/llm-rank.png)
 
-Large Language Model atau yang biasa disingkat dengann LLM adalah Aplikasi dari arsitektur Transformer dan dilatih dengan data yang sangat banyak . 
+Large Language Model atau yang biasa disingkat dengann LLM adalah salah satu pengaplikasian dari arsitektur Transformer dan dilatih dengan data yang sangat banyak.
 
 #### Parameter
 
@@ -113,16 +111,18 @@ Token juga menjadi acuan dalam menentukan batas maksimal input yang dapat dipros
 
 #### Context Window
 
-Context Window adalah rentang atau jumlah token yang dapat “dilihat” atau diingat oleh model dalam 1 kali inferensi. Jika sebuah LLM memiliki context window sebesar 2048 token, itu berarti model dapat mempertimbangkan hingga 2048 token teks sebelumnya. Context window yang lebih panjang membantu model memahami dokumen yang lebih panjang dan mempertahankan koherensi pada percakapan yang lebih panjang.
+Context Window adalah rentang atau jumlah token yang dapat “dilihat” atau diingat oleh model dalam 1 kali inferensi. Jika sebuah LLM memiliki context window sebesar 2048 token, itu berarti model dapat mempertimbangkan hingga 2048 token teks sebelumnya. Context window yang lebih panjang membantu model memahami prompt dan konteks, serta mempertahankan koherensi pada percakapan yang lebih panjang.
 
 #### Prompt Engineering
+
+![Prompt Best Practice](./images/prompt-best-practice.png)
 
 Prompt Engineering adalah teknik pengoptimalan input (“prompt”) yang diberikan kepada LLM untuk mendapatkan respons terbaik. Perubahan kecil pada prompt dapat menyebabkan perbedaan yang signifikan pada respons dari LLM. Teknik dasar dari Prompt Engineering adalah sebagai berikut:
 
 - Konteks yang Jelas: Menyediakan latar belakang atau informasi pendukung yang cukup.
 - Instruksi Spesifik: Menggunakan perintah yang eksplisit sehingga model tahu apa yang harus dilakukan.
-- Contoh Prompt: Kadang memberikan contoh atau format jawaban yang diharapkan dapat membantu model menghasilkan respons yang lebih baik.
 
+[Klik untuk penjelasan lebih lanjut mengenai Prompt Engineering.](code/prompt-eng.md)
 
 #### Reasoning Model
 
@@ -135,48 +135,70 @@ Reasoning Model merujuk pada mekanisme di dalam Large Language Model yang memung
 
 ### Fine Tuning LLM
 
+Seperti fine-tuning model pra-latih lainnya, fine-tuning LLM juga digunakan agar LLM dapat melakukan tugas dengan domain spesifik secara lebih baik. Contoh pengaplikasiannya adalah model `Qwen/Qwen 2.5` yang telah di fine-tune untuk kebutuhan coding dalam model `Qwen/Qwen 2.5-coder`. Full fine-tuning LLM membutuhkan biaya yang cukup besar, meskipun tidak sebesar melatih LLM dari awal (training from scratch). Hal ini dikarenakan LLM memiliki parameter yang sangat besar. Oleh karena itu, data dan sumber daya GPU yang diperlukan pun lebih besar dibandingkan yang lain.
+
+#### Quantization
+
+Kuantisasi adalah teknik untuk mengecilkan model, yang dimaksud mengecilkan disini adalah dengan scaling down tipe data model ke tipe data yang lebih kecil. Contohnya model BERT telah dilatih dalam `float32`, kita bisa load model tersebut dengan `float16` atau mengkonversinya ke yang lebih kecil seperti `int8`. Hal ini bisa mempercepat fine-tuning dan inferensi, namun akan mempengaruhi performa model.
+
 #### Parameter Efficient Fine Tuning
+
+![peft](./images/peft.png)
+
+Parameter Efficient Fine Tuning adalah salah satu cara untuk mendapatkan model yang performanya mirip dengan full fine-tuning LLM dengan resource yang lebih sedikit dan efisien. Cara kerja PEFT adalah dengan memunculkan parameter baru dan freeze layer yang sudah di pre-trained. Dengan ini proses fine-tuning bisa lebih cepat dan efisien.
 
 #### Low Rank Adaptation
 
-#### Quantized-Aware Low Rank Adaptation
+![https://www.google.com/url?sa=i&url=https%3A%2F%2Fhuggingface.co%2Fblog%2Fsamuellimabraz%2Fpeft-methods&psig=AOvVaw2E4vtlZ0Y_-k1zfF-yJUxq&ust=1749365444469000&source=images&cd=vfe&opi=89978449&ved=0CBcQjhxqFwoTCKjk9qHc3o0DFQAAAAAdAAAAABAT](./images/lora.png)
 
-### Retrieval Augmented Generation
+Low Rank Adaptation (LoRA) adalah salah satu variasi lain dari PEFT. LoRA bekerja dengan menambahkan sepasang matriks dengan rank rendah ke setiap lapisan transformer. Selama fine-tuning, hanya matriks rank rendah ini yang dilatih, sementara parameter asli model LLM tetap beku. Hal ini secara signifikan mengurangi jumlah parameter yang dapat dilatih dan kebutuhan komputasi.
 
-#### Embedding Model
+### Mixture of Experts (MoE)
 
-#### Vector Database
+Training model terutama LLM membutuhkan resource yang sangat banyak. Dalam training model yang besar dengan step yang sedikit lebih efisien dari training model yang kecil dengan step yang banyak. Dengan Mixture of Experts kita bisa melakukan fine-tuning dan training model dengan lebih efisien dalam segi biaya dan waktu. Ide dasarnya adalah mengaktifkan hanya sebagian kecil dari keseluruhan jaringan untuk setiap input yang masuk. Ini berbeda dengan model dense tradisional di mana seluruh parameter model digunakan untuk setiap token input. Bagaimana cara MoE bekerja?
 
-#### Retriever & Generator
+![Moe Gate](./images/moe-gate.png)
 
+- Sparse MoE Layer (Lapisan MoE Jarang):
+  - Lapisan MoE terdiri dari sejumlah "expert". Setiap expert ini pada dasarnya adalah sebuah jaringan feed-forward (FFN) atau bahkan bisa berupa arsitektur yang lebih kompleks.
+  - Disebut "jarang" (sparse) karena untuk setiap token input yang diproses, hanya sebagian kecil dari total ahli yang tersedia yang akan diaktifkan dan digunakan untuk komputasi. Ini berbeda dengan lapisan dense biasa di mana seluruh neuron dalam lapisan tersebut aktif untuk setiap input.
+  - Lapisan MoE memiliki beberapa FFN yang lebih kecil (para expert), dan hanya beberapa di antaranya (seringkali satu atau dua) yang dipilih untuk memproses setiap token.
 
-### Fine Tuning vs RAG
+- Gate Network/Router:
+  - Komponen krusial lainnya adalah Gate Network. Fungsi utama dari gate ini adalah untuk secara dinamis menentukan token mana yang harus dikirim ke ahli yang mana.
+  - Keputusan perutean ini sangat penting untuk keberhasilan MoE. Gate belajar bagaimana cara terbaik untuk mendistribusikan token ke para ahli berdasarkan karakteristik token tersebut. Idealnya, setiap ahli akan mengembangkan spesialisasi untuk jenis input tertentu.
+  - Jaringan gerbang ini juga memiliki parameter tersendiri dan dilatih bersamaan (secara end-to-end) dengan para expert dan seluruh bagian model lainnya.
 
 ## Referensi
 
 ### Paper
 
-#### Transformer
+#### Transformers
 
-- https://arxiv.org/abs/1706.03762
+- <https://arxiv.org/abs/1706.03762>
+
+#### Large Language Models
+
+- <https://paperswithcode.com/paper/lora-low-rank-adaptation-of-large-language>
+- <https://paperswithcode.com/paper/qlora-efficient-finetuning-of-quantized-llms>
 
 ### Artikel
 
 #### Pre-trained Model & Fine Tuning
 
-- https://www.geeksforgeeks.org/what-is-the-difference-between-fine-tuning-and-transfer-learning/
-- https://dev.to/luxdevhq/understanding-the-differences-fine-tuning-vs-transfer-learning-370
-- https://encord.com/glossary/pre-trained-model-definition/#:~:text=A%20pre%2Dtrained%20model%20is,tuned%20for%20a%20specific%20task.
+- <https://www.geeksforgeeks.org/what-is-the-difference-between-fine-tuning-and-transfer-learning/>
+- <https://dev.to/luxdevhq/understanding-the-differences-fine-tuning-vs-transfer-learning-370>
+- <https://encord.com/glossary/pre-trained-model-definition/#:~:text=A%20pre%2Dtrained%20model%20is,tuned%20for%20a%20specific%20task>
+- <https://docs.unsloth.ai/get-started/unsloth-notebooks>
 
 #### Transformers
 
-- https://www.datacamp.com/tutorial/how-transformers-work
-- https://huggingface.co/learn/nlp-course/en/chapter1/4
-- https://www.truefoundry.com/blog/transformer-architecture
-
+- <https://www.datacamp.com/tutorial/how-transformers-work>
+- <https://huggingface.co/learn/nlp-course/en/chapter1/4>
+- <https://www.truefoundry.com/blog/transformer-architecture>
 
 #### Large Language Models
 
-- https://www.nvidia.com/en-us/glossary/large-language-models/
-
-
+- <https://www.nvidia.com/en-us/glossary/large-language-models/>
+- <https://www.astera.com/type/blog/prompt-engineering-best-practices/>
+- <https://huggingface.co/blog/moe>

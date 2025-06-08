@@ -1,8 +1,10 @@
-# Introduction
+# Introduction to Artificial Intelligence
 
-## Apa itu Machine Learning?
+## Apa itu Kecerdasan Artifisial?
 
 ![AI Subset](./images/ai-subset.png)
+
+## Apa itu Machine Learning?
 
 Machine Learning adalah cabang dari Artificial Intelligence (AI) dan ilmu komputer yang berfokus pada penggunaan data dan algoritma untuk memungkinkan AI meniru cara manusia belajar, secara bertahap meningkatkan akurasinya. ML memungkinkan sistem komputer untuk meningkatkan kinerjanya pada tugas tertentu melalui pengalaman, tanpa perlu diprogram secara eksplisit.
 
