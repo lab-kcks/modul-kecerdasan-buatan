@@ -73,10 +73,6 @@ Contoh metode ensemble yang sering digunakan adalah Random Forest dan Gradient B
 [Kode Implementasi Ensemble Methods](code/ensemble.ipynb)
 
 
-<p align="center">
-    <img src="./images/meme_update.png" width='75%'>
-
-
 ## <b>Referensi</b>
 <a name="referensi"></a>
 
@@ -91,3 +87,7 @@ Ensemble Methods:
 
 Evaluation Metrics:
 - https://www.geeksforgeeks.org/machine-learning/metrics-for-machine-learning-model/
+
+
+<p align="center">
+    <img src="./images/meme_update.png" width='75%'>
