@@ -1,26 +1,77 @@
 # Modul 1 - Supervised Learning, Metrics Evaluation of Supervised Learning, and Ensemble Methods
 
 ## <b>Daftar Isi</b>
-- [Supervised Learning](#supervised-learning)
-    1. [Regresi](#regresi)
-    2. [Klasifikasi](#klasifikasi)
-- [Metode](#metode)
+- [Tipe Model](#tipe-model)
     1. [Linear Models](#linear-models)
     2. [Tree-based Models](#tree-based-models)
+- [Jenis Metode](#jenis-metode)
+    1. [Regresi](#regresi)
+    2. [Klasifikasi](#klasifikasi)
 - [Ensemble Methods](#ensemble-methods)
 - [Referensi](#referensi)
 
 ## <b>Supervised Learning</b>
 <a name="supervised-learning"></a>
-<p>Supervised learning adalah salah satu bidang machine learning di mana model belajar dari data pelatihan berlabel. Selama training, pengguna memberikan data input kepada algoritma serta label output yang terkait. Berdasarkan data input, algoritma mempelajari pemetaan dari input ke output dan menghasilkan prediksi atau penilaian. Ada banyak penerapan yang menggunakan supervised learning, termasuk penyaringan spam, pengenalan suara, penerjemahan mesin, dan periklanan online.</p>
-
-Sebelum menggunakan model Supervised Learning, sebaiknya dilakukan eksplorasi data (Exploratory Data Analysis/EDA) terlebih dahulu untuk memahami karakteristik, pola, dan kualitas data yang digunakan. Seperti yang telah dilakukan pada [modul 0](../modul-0/Modul_0.ipynb)
 
 <p align="center">
     <img src="./images/supervised_desc.png" width='750'>
 </p>
+<p>Supervised learning adalah salah satu bidang machine learning di mana model belajar dari data pelatihan berlabel. Selama training, pengguna memberikan data input kepada algoritma serta label output yang terkait. Berdasarkan data input, algoritma mempelajari pemetaan dari input ke output dan menghasilkan prediksi atau penilaian. Ada banyak penerapan yang menggunakan supervised learning, termasuk penyaringan spam, pengenalan suara, penerjemahan mesin, dan periklanan online.</p>
 
-## <b>Regresi</b>
+Sebelum menggunakan model Supervised Learning, sebaiknya dilakukan eksplorasi data (Exploratory Data Analysis/EDA) terlebih dahulu untuk memahami karakteristik, pola, dan kualitas data yang digunakan. Seperti yang telah dilakukan pada [modul 0](../modul-0/Modul_0.ipynb)
+
+
+## <b>Tipe Model</b>
+<a name="tipe model"></a>
+
+### <b>Linear Models</b>
+<a name="1. Linear"></a>
+
+<p align="center">
+    <img src="./images/linear.png" width='250'>
+</p>
+
+<p>Linear models adalah metode supervised learning yang membuat prediksi berdasarkan hubungan linear antar fitur. 
+    
+Di **regression**, model digunakan untuk memprediksi nilai numerik seperti harga atau jumlah, sedangkan pada **classification** model digunakan untuk memisahkan data ke dalam beberapa kelas menggunakan batas keputusan linear. 
+    
+Contohnya adalah Linear Regression dan Logistic Regression.
+
+| Kelebihan | Kekurangan |
+|--------|--------|
+| mudah diimplementasikan | sensitif pada nilai outlier |
+| proses train model cepat  | asumsi cenderung linear |
+| cocok untuk dataset dengan banyak fitur | masalah multikolinearitas pada fitur dataset |
+
+> **Notes:** Pastikan selalu melakukan feature scaling dan menangani outlier karena model linear sangat sensitif terhadap skala data dan nilai ekstrem.
+</p>
+
+### <b>Tree-based Models</b>
+<a name="2. tree"></a>
+
+<p align="center">
+    <img src="./images/tree-based.png" width='350'>
+</p>
+
+<p>Untuk Tree-based model, metode yang membuat prediksi lewat serangkaian aturan keputusan berbentuk pohon. 
+
+Pada **regression**, model memprediksi nilai numerik dengan membagi data ke beberapa kelompok. Sedangkan di **classification** model, menentukan kelas berdasarkan kondisi tertentu dari fitur. 
+    
+Contohnya adalah Decision Tree, Random Forest, dan Gradient Boosting.
+
+| Kelebihan | Kekurangan |
+|--------|--------|
+| kuat terhadap outlier | tidak bisa ekstrapolasi (nilai di luar rentang training) |
+| Dapat menangani data non-linear | bias pada fitur kategori tinggi/unik |
+| tidak perlu scalling data | konsumsi resource tinggi |
+
+> **Notes:** Gunakan model ini untuk menangkap pola non-linear tanpa perlu scaling data, namun pastikan untuk membatasi kedalaman pohon agar tidak terjadi overfitting.
+</p>
+
+## <b>Jenis Metode</b>
+<a name="jenis metode"></a>
+
+### <b>Regresi</b>
 <a name="1. regresi"></a>
 <p>Regresi adalah salah satu jenis metode Supervised Learning di mana variabel targetnya berupa nilai yang bersifat kontinu. Contoh penggunaannya termasuk memprediksi berat badan, usia, harga, dan sebagainya.</p>
 
@@ -30,7 +81,7 @@ Sebelum menggunakan model Supervised Learning, sebaiknya dilakukan eksplorasi da
 
 [Kode Implementasi Regresi](code/regresi.ipynb) 
 
-## <b>Klasifikasi</b>
+### <b>Klasifikasi</b>
 <a name="2. klasifikasi"></a>
 <p>Klasifikasi adalah salah satu metode dalam Supervised Learning di mana algoritma belajar dari data berlabel untuk memprediksi kategori atau kelas dari data baru di masa mendatang. Metode ini digunakan untuk membedakan data ke dalam beberapa kelompok berdasarkan fitur-fitur tertentu.</p>
 
@@ -39,24 +90,6 @@ Sebelum menggunakan model Supervised Learning, sebaiknya dilakukan eksplorasi da
 </p>
 
 [Kode Implementasi Klasifikasi](code/klasifikasi.ipynb)
-
-## <b>Metode</b>
-<a name="metode"></a>
-### <b>Linear Models</b>
-<a name="1. Linear"></a>
-<p>Linear models adalah metode *supervised learning* yang membuat prediksi berdasarkan hubungan linear antar fitur. 
-    
-Di **regression**, model digunakan untuk memprediksi nilai numerik seperti harga atau jumlah, sedangkan pada **classification** model digunakan untuk memisahkan data ke dalam beberapa kelas menggunakan batas keputusan linear. 
-    
-Contohnya adalah Linear Regression dan Logistic Regression.</p>
-
-### <b>Tree-based Models</b>
-<a name="2. tree"></a>
-<p>Untuk Tree-based model, metode yang membuat prediksi lewat serangkaian aturan keputusan berbentuk pohon. 
-
-Pada **regression**, model memprediksi nilai numerik dengan membagi data ke beberapa kelompok. Sedangkan di **classification** model, menentukan kelas berdasarkan kondisi tertentu dari fitur. 
-    
-Contohnya adalah Decision Tree, Random Forest, dan Gradient Boosting.</p>
 
 ## <b>Ensemble Methods</b>
 <a name="ensemble"></a>
@@ -76,9 +109,12 @@ Contoh metode ensemble yang sering digunakan adalah Random Forest dan Gradient B
 ## <b>Referensi</b>
 <a name="referensi"></a>
 
-### Sumber Belajar yeuh
+### Sumber Belajar yeuhh🤗
+Tipe Model:
+- https://www.geeksforgeeks.org/machine-learning/ml-advantages-and-disadvantages-of-linear-regression/
+- https://www.analyticsvidhya.com/blog/2016/04/tree-based-algorithms-complete-tutorial-scratch-in-python/
 
-Supervised Learning:
+Jenis Metode:
 - https://www.datacamp.com/blog/supervised-machine-learning
 - https://www.geeksforgeeks.org/machine-learning/ml-classification-vs-regression/
 
