@@ -202,6 +202,8 @@ Dalam klasifikasi gambar, seringkali ditemukan masalah berupa data training berj
 
 ## 3. Convolutional Neural Network (CNN)
 
+![cnn demo](./images/cnn-demo.gif)
+
 **Convolutional Neural Network (CNN)** adalah arsitektur deep learning yang paling umum dan efektif untuk tugas computer vision, termasuk klasifikasi gambar.
 
 CNN dirancang khusus untuk memproses data dengan topologi grid, seperti gambar.
@@ -287,7 +289,7 @@ $$
 {f(x)} = {max(0 , {x})}
 $$
 
-Fungsi RelU berfungsi untuk mengambil nilai maksimal setiap elemen matriks ketika dibandingkan dengan 0, sehingga tidak ada nilai negatif pada hasil matriks akhir.
+Fungsi ReLU berfungsi untuk mengambil nilai maksimal setiap elemen matriks ketika dibandingkan dengan 0, sehingga tidak ada nilai negatif pada hasil matriks akhir.
 
 #### Pooling Layer
 
@@ -378,6 +380,59 @@ Namun karena data gambar dapat membuat training berjalan sangat lama, perlu dipe
 - **Jumlah Epoch:** Berapa kali seluruh dataset training dilewatkan melalui model.
 
 > Untuk metode Hyper Parameter Tuning sama seperti pada machine learning. Kalian bisa menggunakan GridSearch, Optuna, Keras Tuner, dsb.
+
+---
+## 5. Arsitektur Deep Learning Lain untuk Data Gambar
+
+Selain **Convolutional Neural Network (CNN)**, terdapat beberapa arsitektur deep learning lain yang juga banyak digunakan dalam tugas **computer vision**. Setiap arsitektur memiliki kelebihan dan tujuan yang berbeda, tergantung pada jenis masalah yang ingin diselesaikan.
+
+Beberapa arsitektur populer yang sering digunakan antara lain **Residual Network (ResNet)**, **Vision Transformer (ViT)**, dan **U-Net**.
+
+### Residual Network (ResNet)
+
+![residual block](./images/residual-block.png)
+
+Residual Network adalah arsitektur deep learning yamg diperkenalkan untuk mengatasi masalah **Vanishing Gradient** pada deep neural network.
+
+**So what is Vanishing Gradient?**
+
+Jadi didalam AI ada namanya backpropagation, yaitu proses suatu model untuk belajar dari kesalahan.
+
+![backprop](./images/backpropagation.png)
+
+Nah pada proses ini, sesaat setelah AI mengeluarkan Output (Prediksi) ia akan mengirimkan sinyal "koreksi" dari lapisan paling akhir (output) kembali ke lapisan paling awal (input). dari output ke input seperti pada gambar diatas.
+
+Operasi tersebut jika dilakukan terlalu dalam, sinyal koreksi akan semakin melemah seiring perjalanan mundur melewati setiap lapisan.
+
+sinyal yang dimaksud disini adalah angka gradien, yang tambah lama akan tambah kecil karena adanya operasi perkalian.
+
+$$
+0.1 \times 0.1 = 0.01
+$$
+
+$$
+0.1 \times 0.1 \times 0.1 = 0.001
+$$
+
+$$
+dst...
+$$
+
+Jika semakin kecil sinyal (angka gradien), maka semakin kecil juga model akan belajar. bahkan bisa jadi **model tidak akan belajar sama sekali**.
+
+Maka dari itu diciptakanlah **Residual Network (ResNet)**. ResNet memperkenalkan konsep **skip connection** atau **residual connection**, yaitu koneksi yang memungkinkan informasi dari layer sebelumnya dilewatkan langsung ke layer berikutnya tanpa harus melalui seluruh transformasi layer di antaranya.
+
+Secara sederhana, ResNet mempelajari fungsi residual sebagai berikut:
+
+$$H(x) = F(x) + x$$
+
+Dimana:
+
+- $H(x)$ adalah output dari layer
+- $F(x)$ adalah output dari layer sebelumnya
+- $x$ adalah input dari layer
+
+Dengan pendekatan ini, jaringan dapat dilatih dengan jumlah layer yang dalam, bahkan hingga ratusan layer.
 
 ---
 
