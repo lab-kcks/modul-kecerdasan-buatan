@@ -10,6 +10,14 @@
 - [Ensemble Methods](#ensemble-methods)
 - [Referensi](#referensi)
 
+### <b>Principal Component Analysis</b>
+<a name="pca"></a>
+
+
+<p>Sebelum masuk ke pembahasan Supervised Learning, mempelajari Principal Component Analysis (PCA) dapat membantu mempersiapkan data yang masih mentah (raw data). PCA adalah teknik yang digunakan untuk mengurangi jumlah fitur (dimensi) tanpa menghilangkan informasi penting secara signifikan.
+
+Dengan menggunakan PCA, dimensionalitas data dapat dikurangi sehingga proses pelatihan model menjadi lebih cepat. Selain itu, PCA juga membantu mengurangi noise dan redundansi, meningkatkan performa model, mengurangi risiko overfitting, serta menangani fitur-fitur yang saling berkorelasi. <p>
+
 ## <b>Supervised Learning</b>
 <a name="supervised-learning"></a>
 
@@ -18,7 +26,7 @@
 </p>
 <p>Supervised learning adalah salah satu bidang machine learning di mana model belajar dari data pelatihan berlabel. Selama training, pengguna memberikan data input kepada algoritma serta label output yang terkait. Berdasarkan data input, algoritma mempelajari pemetaan dari input ke output dan menghasilkan prediksi atau penilaian. Ada banyak penerapan yang menggunakan supervised learning, termasuk penyaringan spam, pengenalan suara, penerjemahan mesin, dan periklanan online.</p>
 
-Sebelum menggunakan model Supervised Learning, sebaiknya dilakukan eksplorasi data (Exploratory Data Analysis/EDA) terlebih dahulu untuk memahami karakteristik, pola, dan kualitas data yang digunakan. Seperti yang telah dilakukan pada [modul 0](../modul-0/Modul_0.ipynb)
+Sebelum menggunakan model Supervised Learning, sebaiknya dilakukan eksplorasi data (Exploratory Data Analysis/EDA) terlebih dahulu untuk memahami karakteristik, pola, dan kualitas data yang digunakan. Seperti yang telah dilakukan pada [modul 0](../modul-0/Modul_0.ipynb)<p>
 
 
 ## <b>Tipe Model</b>
@@ -123,6 +131,8 @@ Ensemble Methods:
 
 Evaluation Metrics:
 - https://www.geeksforgeeks.org/machine-learning/metrics-for-machine-learning-model/
+- https://www.kdnuggets.com/machine-learning-evaluation-metrics-theory-and-overview
+
 
 
 <p align="center">
