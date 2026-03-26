@@ -434,6 +434,12 @@ Dimana:
 
 Dengan pendekatan ini, jaringan dapat dilatih dengan jumlah layer yang dalam, bahkan hingga ratusan layer.
 
+### Vision Transformer (ViT)
+
+
+### U-Net
+bla bla
+
 ---
 
 ## Referensi
