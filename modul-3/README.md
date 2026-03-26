@@ -436,9 +436,41 @@ Dengan pendekatan ini, jaringan dapat dilatih dengan jumlah layer yang dalam, ba
 
 ### Vision Transformer (ViT)
 
+![transformer-literally](./images/transformer-literally.png)
+
+**~~Optimus Prime~~** bukan tapi **Vision Transformer (ViT)** adalah arsitektur deep learning yang `meminjam` konsep dari arsitektur **Transformer** pada NLP. Konsep dari Transformer ini kemudian di gunakan untuk task `computer vision`.
+
+![vit](./images/vit.png)
+
+Kalau biasanya model lain (seperti CNN) melihat gambar lewat filter kecil secara bertahap, ViT punya cara yang berbeda. Bayangkan Anda sedang menyusun puzzle. Begini proses kerjanya:
+
+---
+
+**🧩 Step 1 — Image Patching (*Memotong Gambar*)**
+
+![image patching](./images/image-patching.png)
+
+Gambar tidak dilihat secara utuh sekaligus, melainkan **dipotong-potong menjadi kotak-kotak kecil**, misalnya berukuran `16×16 pixel`. Anggap saja setiap potongan ini sebagai **kepingan puzzle**.
+
+---
+
+🔢 Step 2 — Patch Embedding *(Ubah ke Angka)*
+
+![patch embedding](./images/patch-embedding.png)
+
+Setiap kepingan tadi dikonversi menjadi **deretan angka** agar komputer bisa membacanya. Dalam dunia AI, satu potongan gambar ini diperlakukan layaknya satu **"kata"** dalam sebuah kalimat.
+
+---
+
+🔍 Step 3 — Self-Attention *(Paham Konteks)*
+
+Inilah **inti dari segalanya**. Model akan melihat **hubungan antar potongan** secara bersamaan, bukan satu per satu. Dengan mekanisme ini, ViT mampu langsung memahami **gambaran besar (konteks global)** sejak awal proses, tanpa harus menunggu seluruh gambar diproses secara bertahap.
+
+---
+
+Jadi intinya, ViT ini melihat gambar secara global, sedangkan CNN melihat gambar secara lokal. Tantangannya adalah ViT biasanya butuh data yang lebih banyak daripada CNN agar bisa bekerja dengan baik.
 
 ### U-Net
-bla bla
 
 ---
 
@@ -448,7 +480,12 @@ bla bla
 
 > [Contoh Klasifikasi Gambar menggunakan CNN](https://www.kaggle.com/code/natapelysynka/muffin-versus-chihuahua-cnn-model-accuracy-0-84)
 
-- [Pengenalan Deep Learning Part 7 : Convolutional Neural Network (CNN)](https://medium.com/@samuelsena/pengenalan-deep-learning-part-7-convolutional-neural-network-cnn-b003b477dc94)
-- [Backpropagation in Neural Network](https://www.geeksforgeeks.org/backpropagation-in-neural-network/)
-- [Convolution Neural Network – Better Understanding](https://www.analyticsvidhya.com/blog/2021/07/convolution-neural-network-better-understanding/)
-- [Fully Connected Layer vs. Convolutional Layer: Explained](https://builtin.com/machine-learning/fully-connected-layer)
+> [Pengenalan Deep Learning Part 7 : Convolutional Neural Network (CNN)](https://medium.com/@samuelsena/pengenalan-deep-learning-part-7-convolutional-neural-network-cnn-b003b477dc94)
+
+> [Backpropagation in Neural Network](https://www.geeksforgeeks.org/backpropagation-in-neural-network/)
+
+> [Convolution Neural Network – Better Understanding](https://www.analyticsvidhya.com/blog/2021/07/convolution-neural-network-better-understanding/)
+
+> [Fully Connected Layer vs. Convolutional Layer: Explained](https://builtin.com/machine-learning/fully-connected-layer)
+
+> [Vision Transformer (ViT)](https://www.pinecone.io/learn/series/image-search/vision-transformers/)
