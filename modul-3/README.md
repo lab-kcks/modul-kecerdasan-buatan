@@ -21,6 +21,9 @@
       - [Pooling Layer](#pooling-layer)
     - [Classification / Dense Layers](#classification--dense-layers)
   - [4. Hyper parameter Tuning](#4-hyper-parameter-tuning)
+  - [5. Arsitektur Deep Learning Lain untuk Data Gambar](#5-arsitektur-deep-learning-lain-untuk-data-gambar)
+    - [Residual Network (ResNet)](#residual-network-resnet)
+    - [Vision Transformer (ViT)](#vision-transformer-vit)
   - [Referensi](#referensi)
 
 ---
@@ -386,7 +389,7 @@ Namun karena data gambar dapat membuat training berjalan sangat lama, perlu dipe
 
 Selain **Convolutional Neural Network (CNN)**, terdapat beberapa arsitektur deep learning lain yang juga banyak digunakan dalam tugas **computer vision**. Setiap arsitektur memiliki kelebihan dan tujuan yang berbeda, tergantung pada jenis masalah yang ingin diselesaikan.
 
-Beberapa arsitektur populer yang sering digunakan antara lain **Residual Network (ResNet)**, **Vision Transformer (ViT)**, dan **U-Net**.
+Beberapa arsitektur populer yang sering digunakan antara lain **Residual Network (ResNet)** dan  **Vision Transformer (ViT)**.
 
 ### Residual Network (ResNet)
 
@@ -446,7 +449,7 @@ Kalau biasanya model lain (seperti CNN) melihat gambar lewat filter kecil secara
 
 ---
 
-**🧩 Step 1 — Image Patching (*Memotong Gambar*)**
+**Step 1 — Image Patching (*Memotong Gambar*)**
 
 ![image patching](./images/image-patching.png)
 
@@ -454,7 +457,7 @@ Gambar tidak dilihat secara utuh sekaligus, melainkan **dipotong-potong menjadi 
 
 ---
 
-🔢 Step 2 — Patch Embedding *(Ubah ke Angka)*
+**Step 2 — Patch Embedding *(Ubah ke Angka)***
 
 ![patch embedding](./images/patch-embedding.png)
 
@@ -462,15 +465,13 @@ Setiap kepingan tadi dikonversi menjadi **deretan angka** agar komputer bisa mem
 
 ---
 
-🔍 Step 3 — Self-Attention *(Paham Konteks)*
+**Step 3 — Self-Attention *(Paham Konteks)***
 
 Inilah **inti dari segalanya**. Model akan melihat **hubungan antar potongan** secara bersamaan, bukan satu per satu. Dengan mekanisme ini, ViT mampu langsung memahami **gambaran besar (konteks global)** sejak awal proses, tanpa harus menunggu seluruh gambar diproses secara bertahap.
 
 ---
 
 Jadi intinya, ViT ini melihat gambar secara global, sedangkan CNN melihat gambar secara lokal. Tantangannya adalah ViT biasanya butuh data yang lebih banyak daripada CNN agar bisa bekerja dengan baik.
-
-### U-Net
 
 ---
 
