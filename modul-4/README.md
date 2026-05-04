@@ -52,13 +52,27 @@ Klasifikasi teks diterapkan dalam berbagai konteks contohnya:
 
 ---
 ## 2. Preprocessing Text
-Merupakan tahap awal dalam metode NLP untuk dokumen yang berupa teks (NLP for Text). Text Preprocessing mempersiapkan teks yang tidak terstruktur menjadi data yang baik dan siap untuk diolah. Ada berbagai proses yang dapat digunakan dalam tahap Text Preprocessing. Tidak ada aturan yang baku mengenai proses apa saja serta urutan yang digunakan dalam tahap Text Preprocessing. Semua tergantung dari output yang kita inginkan dari data tersebut. Kali ini, kita akan mencoba melakukan Text Preprocessing menggunakan bahasa pemrograman Python dengan library Natural Language Toolkit (NLTK). Contoh kalimat yang akan digunakan adalah **"Barangnya oke, penjualnya juga ramah dan respon cepat. Mantaplah pokoknya, very good!"**
+Merupakan tahap awal dalam metode NLP untuk dokumen yang berupa teks (NLP for Text). Text Preprocessing mempersiapkan teks yang tidak terstruktur menjadi data yang baik dan siap untuk diolah. Ada berbagai proses yang dapat digunakan dalam tahap Text Preprocessing. Tidak ada aturan yang baku mengenai proses apa saja serta urutan yang digunakan dalam tahap Text Preprocessing. Semua tergantung dari output yang kita inginkan dari data tersebut. Kali ini, kita akan mencoba melakukan Text Preprocessing menggunakan bahasa pemrograman Python dengan library Natural Language Toolkit (NLTK). 
+
+Contoh kalimat yang akan digunakan adalah **"Barangnya oke, penjualnya juga ramah dan respon cepat. Mantaplah pokoknya, very good!"**
+
 ### Tokenization 
-Tokenizing atau disebut juga tahap Lexical Analysis adalah proses pemotongan teks menjadi bagian-bagian yang lebih kecil, yang disebut token. Pada proses ini juga dilakukan penghilangan angka, tanda baca dan karakter lain yang dianggap tidak memiliki pengaruh terhadap pemrosesan teks. Contoh outputnya adalah ['barangnya','oke', 'penjualnya', 'juga', 'ramah', 'dan', 'respon', 'cepat', 'mantaplah', 'pokoknya', 'very', 'good']
+<img src="./images/tokenization.png" width="50%">
+
+Tokenizing atau disebut juga tahap Lexical Analysis adalah proses pemotongan teks menjadi bagian-bagian yang lebih kecil, yang disebut token. Pada proses ini juga dilakukan penghilangan angka, tanda baca dan karakter lain yang dianggap tidak memiliki pengaruh terhadap pemrosesan teks. 
+
+Contoh outputnya adalah **['barangnya','oke', 'penjualnya', 'juga', 'ramah', 'dan', 'respon', 'cepat', 'mantaplah', 'pokoknya', 'very', 'good']**
+
 ### Case Folding
-Case Folding merupakan proses untuk mengkonversi teks ke dalam format huruf kecil (lowercase). Hal ini bertujuan untuk memberikan bentuk standar pada teks. Contoh outputnya adalah: **"barangnya oke, penjualnya juga ramah dan respon cepat. mantaplah pokoknya, very good!"**
+Case Folding merupakan proses untuk mengkonversi teks ke dalam format huruf kecil (lowercase). Hal ini bertujuan untuk memberikan bentuk standar pada teks. 
+
+Contoh outputnya adalah: **"barangnya oke, penjualnya juga ramah dan respon cepat. mantaplah pokoknya, very good!"**
+
 ### Stemming
-Stemming adalah proses pengubahan bentuk kata menjadi kata dasar atau tahap mencari root dari tiap kata. Outputnya adalah: **"barang oke jual juga ramah dan respon cepat mantap pokok very good"**
+Stemming adalah proses pengubahan bentuk kata menjadi kata dasar atau tahap mencari root dari tiap kata. 
+
+Outputnya adalah: **"barang oke jual juga ramah dan respon cepat mantap pokok very good"**
+
 ### Filtering
 
 Tahap Filtering atau Stopword Removal adalah tahap pemilihan kata-kata yang dianggap penting. Terdapat dua metode yang dapat digunakan dalam tahap ini, yaitu: 
