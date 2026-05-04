@@ -23,6 +23,20 @@
   - [Referensi](#referensi)
 
 ## 1. Pendahuluan
+
+### Apa itu Natural Languange Processing (NLP)?
+Natural Language Processing atau Pemrosesan Bahasa Alami adalah cabang dari Kecerdasan Buatan (Artificial Intelligence) yang menjembatani komunikasi antara bahasa manusia (bahasa alami) dengan pemahaman mesin.
+
+![NLP](./images/nlp.jpg)
+
+Tujuan utama NLP adalah untuk memungkinkan komputer memahami, menafsirkan, memanipulasi, dan menghasilkan bahasa manusia dengan cara yang bermakna. NLP mengombinasikan keilmuan Linguistik Komputasional dengan model statistik, Machine Learning, dan Deep Learning.
+
+Implementasi dalam Dunia Nyata:
+1. Machine Translation: Seperti Google Translate yang menerjemahkan antar bahasa secara instan.
+2. Virtual Assistants: Seperti Siri, Google Assistant, atau Alexa yang memproses perintah suara.
+3. **Text Classification**: (Topik modul kita) Yang digunakan untuk memilah email spam atau melakukan analisis sentimen.
+4. Information Extraction: Mengambil poin-poin penting secara otomatis dari sebuah dokumen kontrak yang panjang.
+
 ### Apa itu text classification?
 Text Classification atau klasifikasi teks merupakan salah satu bidang dari 
 Natural Language Processing yang mengotomasikan pengklasifikasian teks ke satu 
