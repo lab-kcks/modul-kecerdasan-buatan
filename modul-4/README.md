@@ -2,6 +2,8 @@
 
 > Pada modul kelima, kita akan mempelajari deep learning part 2 untuk text classification. Kita akan mempelajari langkah demi langkah gimana caranya melakukan text classifiation. So let's get started, shall we?
 
+![Wordcloud2](./images/Wordcloud2.png)
+
 ## Daftar Isi
 
 - [Deep Learning (Text)](#deep-learning-text-classification)
