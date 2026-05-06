@@ -151,6 +151,13 @@ Recurrent neural network (RNN) adalah sistem algoritma tertua yang telah dikemba
 
 ![RNN](./images/rnn.jpg)
 
+#### Basic RNN vs FNN
+![RNN vs FNN](./images/RNN-vs-FNN-660.png)
+
+**a. Feedforward Neural Networks (FNN)** memproses data dalam satu arah dari input ke output tanpa menyimpan informasi dari input sebelumnya. Hal ini membuat mereka cocok untuk tugas-tugas dengan input independen seperti klasifikasi gambar. Namun, FNN tidak cocok untuk data berurutan karena kekurangan memori.
+
+**b. Recurrent Neural Networks (RNNs)** mengatasi hal ini dengan memasukkan loop yang memungkinkan informasi dari langkah sebelumnya untuk diumpankan kembali ke dalam jaringan. Umpan balik ini memungkinkan RNN untuk mengingat input sebelumnya sehingga ideal untuk tugas-tugas yang membutuhkan konteks.
+
 ```python
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
@@ -198,13 +205,6 @@ Lapisan saraf standar untuk melakukan pengolahan fitur hasil dari RNN.
 
 ##### d. Output (Sigmoid)
 Menghasilkan nilai antara 0 dan 1. Jika $> 0.5$, teks diklasifikasikan sebagai kategori 1 (misal: Positif).
-
-#### Basic RNN vs FNN
-![RNN vs FNN](./images/RNN-vs-FNN-660.png)
-
-**a. Feedforward Neural Networks (FNN)** memproses data dalam satu arah dari input ke output tanpa menyimpan informasi dari input sebelumnya. Hal ini membuat mereka cocok untuk tugas-tugas dengan input independen seperti klasifikasi gambar. Namun, FNN tidak cocok untuk data berurutan karena kekurangan memori.
-
-**b. Recurrent Neural Networks (RNNs)** mengatasi hal ini dengan memasukkan loop yang memungkinkan informasi dari langkah sebelumnya untuk diumpankan kembali ke dalam jaringan. Umpan balik ini memungkinkan RNN untuk mengingat input sebelumnya sehingga ideal untuk tugas-tugas yang membutuhkan konteks.
 
 ### Forward pass and backpropragation through time (BPTT)
 Backpropagation through time (BPTT) adalah metode yang digunakan Recurrent Neural Network (RNN) untuk melatih jaringan dengan merambatkan kesalahan melalui waktu. Dalam FNN, data mengalir melalui jaringan dalam satu arah, dari lapisan input melalui lapisan tersembunyi ke lapisan output. Namun, dalam RNN, ada koneksi antara node dalam langkah waktu yang berbeda, yang berarti bahwa output dari jaringan pada satu langkah waktu tergantung pada input pada langkah waktu tersebut dan juga langkah waktu sebelumnya.
