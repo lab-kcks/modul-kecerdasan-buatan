@@ -52,28 +52,79 @@ Klasifikasi teks diterapkan dalam berbagai konteks contohnya:
 
 ---
 ## 2. Preprocessing Text
-Merupakan tahap awal dalam metode NLP untuk dokumen yang berupa teks (NLP for Text). Text Preprocessing mempersiapkan teks yang tidak terstruktur menjadi data yang baik dan siap untuk diolah. Ada berbagai proses yang dapat digunakan dalam tahap Text Preprocessing. Tidak ada aturan yang baku mengenai proses apa saja serta urutan yang digunakan dalam tahap Text Preprocessing. Semua tergantung dari output yang kita inginkan dari data tersebut. Kali ini, kita akan mencoba melakukan Text Preprocessing menggunakan bahasa pemrograman Python dengan library Natural Language Toolkit (NLTK). 
+Merupakan tahap awal dalam metode NLP untuk dokumen yang berupa teks (NLP for Text). Text Preprocessing mempersiapkan teks yang tidak terstruktur menjadi data yang baik dan siap untuk diolah. Ada berbagai proses yang dapat digunakan dalam tahap Text Preprocessing. Tidak ada aturan yang baku mengenai proses apa saja serta urutan yang digunakan dalam tahap Text Preprocessing. Semua tergantung dari output yang kita inginkan dari data tersebut. Kali ini, kita akan mencoba melakukan Text Preprocessing menggunakan bahasa pemrograman Python dengan library **Natural Language Toolkit (NLTK). **
 
 Contoh kalimat yang akan digunakan adalah **"Barangnya oke, penjualnya juga ramah dan respon cepat. Mantaplah pokoknya, very good!"**
 
-### Tokenization 
+```python
+import nltk
+import re
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory # Library tambahan untuk Stemming Bahasa Indonesia
+
+# Download resource NLTK
+nltk.download('punkt')
+nltk.download('stopwords')
+
+# Kalimat contoh
+raw_text = "Barangnya oke, penjualnya juga ramah dan respon cepat. Mantaplah pokoknya, very good!"
+```
+
+### a. Tokenization 
 <img src="./images/tokenization.png" width="50%">
 
 Tokenizing atau disebut juga tahap Lexical Analysis adalah proses pemotongan teks menjadi bagian-bagian yang lebih kecil, yang disebut token. Pada proses ini juga dilakukan penghilangan angka, tanda baca dan karakter lain yang dianggap tidak memiliki pengaruh terhadap pemrosesan teks. 
 
-Contoh outputnya adalah **['barangnya','oke', 'penjualnya', 'juga', 'ramah', 'dan', 'respon', 'cepat', 'mantaplah', 'pokoknya', 'very', 'good']**
+```python
+# Tokenization
+tokens = word_tokenize(text_cleaned)
 
-### Case Folding
+print(f"Hasil Tokenization: \n{tokens}")
+```
+
+#### Outputnya adalah **['barangnya','oke', 'penjualnya', 'juga', 'ramah', 'dan', 'respon', 'cepat', 'mantaplah', 'pokoknya', 'very', 'good']**
+
+### b. Case Folding
+![casefolding](./images/casefolding.png)
+
 Case Folding merupakan proses untuk mengkonversi teks ke dalam format huruf kecil (lowercase). Hal ini bertujuan untuk memberikan bentuk standar pada teks. 
 
-Contoh outputnya adalah: **"barangnya oke, penjualnya juga ramah dan respon cepat. mantaplah pokoknya, very good!"**
+```python
+# Case Folding
+text_lowercase = raw_text.lower()
 
-### Stemming
-Stemming adalah proses pengubahan bentuk kata menjadi kata dasar atau tahap mencari root dari tiap kata. 
+# Menghapus tanda baca dan angka menggunakan Regex
+text_cleaned = re.sub(r'[^a-zA-Z\s]', '', text_lowercase)
 
-Outputnya adalah: **"barang oke jual juga ramah dan respon cepat mantap pokok very good"**
+print(f"Hasil Case Folding: \n{text_cleaned}")
+```
 
-### Filtering
+#### Outputnya adalah: **"barangnya oke, penjualnya juga ramah dan respon cepat. mantaplah pokoknya, very good!"**
+
+### c. Stemming
+<img src="./images/stemming.png" width="50%">
+
+Stemming adalah proses pengubahan bentuk kata menjadi kata dasar atau tahap mencari root dari tiap kata. Karena NLTK belum optimal untuk root word Indonesia, kita menggunakan **library PySastrawi.**
+```python
+# Inisialisasi Stemmer Sastrawi
+factory = StemmerFactory()
+stemmer = factory.create_stemmer()
+
+# Menggabungkan token kembali menjadi kalimat untuk proses stemming
+text_for_stemming = " ".join(filtered_tokens)
+stemmed_text = stemmer.stem(text_for_stemming)
+
+# Jika ingin dalam bentuk list kembali
+final_tokens = stemmed_text.split()
+
+print(f"Hasil Stemming: \n{final_tokens}")
+```
+
+#### Outputnya adalah: **"barang oke jual juga ramah dan respon cepat mantap pokok very good"**
+
+### d. Filtering
+<img src="./images/stopword.png" width="50%">
 
 Tahap Filtering atau Stopword Removal adalah tahap pemilihan kata-kata yang dianggap penting. Terdapat dua metode yang dapat digunakan dalam tahap ini, yaitu: 
 1. Stoplist:
@@ -81,20 +132,31 @@ Pada metode ini, kita menyiapkan kumpulan kata yang tidak deskriptif (tidak pent
 2. Wordlist:
 Kebalikan dari stoplist, pada metode ini kita menyiapkan kumpulan kata yang deskriptif (penting) yang disebut wordlist. Hanya kata yang termasuk ke dalam wordlist yang akan digunakan pada proses selanjutnya, sementara kata lainnya akan dibuang.
 
+```python
+# Mengambil daftar stopword Bahasa Indonesia dari NLTK
+stop_words = set(stopwords.words('indonesian'))
+
+# Menambahkan stopword tambahan jika perlu
+stop_words.extend(['oke', 'very', 'good']) 
+
+# Proses Filtering
+filtered_tokens = [word for word in tokens if word not in stop_words]
+
+print(f"Hasil Filtering: \n{filtered_tokens}")
+```
 
 ---
 ## 3. Recurrent Neural Network (RNN)
-Recurrent neural network (RNN) adalah sistem algoritma tertua yang telah dikembangkan sejak tahun 1980-an. Sebagai sebuah sistem algoritma, Recurrent neural network dapat mengingat input dan selanjutnya memberikan output sesuai dengan yang diinginkan. Memori internal menjadi poin penting dalam Recurrent neural networkkarena dapat memprediksi hal berikutnya. Sehingga, Recurrent neural network sangat cocok untuk diaplikasikan pada deret waktu, mesin pencarian, teks, audio, video, bahkan mesin keuangan.
+Recurrent neural network (RNN) adalah sistem algoritma tertua yang telah dikembangkan sejak tahun 1980-an. Sebagai sebuah sistem algoritma, Recurrent neural network dapat mengingat input dan selanjutnya memberikan output sesuai dengan yang diinginkan. Memori internal menjadi poin penting dalam Recurrent neural network karena dapat memprediksi hal berikutnya. Sehingga, Recurrent neural network sangat cocok untuk diaplikasikan pada deret waktu, mesin pencarian, teks, audio, video, bahkan mesin keuangan.
 
 ### Basic RNN vs FNN
-![RNN](./images/rnn.jpg)
 ![RNN vs FNN](./images/RNN-vs-FNN-660.png)
-Feedforward Neural Networks (FNN) memproses data dalam satu arah dari input ke output tanpa menyimpan informasi dari input sebelumnya. Hal ini membuat mereka cocok untuk tugas-tugas dengan input independen seperti klasifikasi gambar. Namun, FNN tidak cocok untuk data berurutan karena kekurangan memori.
 
-Recurrent Neural Networks (RNNs) mengatasi hal ini dengan memasukkan loop yang memungkinkan informasi dari langkah sebelumnya untuk diumpankan kembali ke dalam jaringan. Umpan balik ini memungkinkan RNN untuk mengingat input sebelumnya sehingga ideal untuk tugas-tugas yang membutuhkan konteks.
+**a. Feedforward Neural Networks (FNN)** memproses data dalam satu arah dari input ke output tanpa menyimpan informasi dari input sebelumnya. Hal ini membuat mereka cocok untuk tugas-tugas dengan input independen seperti klasifikasi gambar. Namun, FNN tidak cocok untuk data berurutan karena kekurangan memori.
+
+**b. Recurrent Neural Networks (RNNs)** mengatasi hal ini dengan memasukkan loop yang memungkinkan informasi dari langkah sebelumnya untuk diumpankan kembali ke dalam jaringan. Umpan balik ini memungkinkan RNN untuk mengingat input sebelumnya sehingga ideal untuk tugas-tugas yang membutuhkan konteks.
 
 ### Forward pass and backpropragation through time (BPTT)
-
 Backpropagation through time (BPTT) adalah metode yang digunakan Recurrent Neural Network (RNN) untuk melatih jaringan dengan merambatkan kesalahan melalui waktu. Dalam FNN, data mengalir melalui jaringan dalam satu arah, dari lapisan input melalui lapisan tersembunyi ke lapisan output. Namun, dalam RNN, ada koneksi antara node dalam langkah waktu yang berbeda, yang berarti bahwa output dari jaringan pada satu langkah waktu tergantung pada input pada langkah waktu tersebut dan juga langkah waktu sebelumnya.
 
 ![BPTT](./images/image.png)
