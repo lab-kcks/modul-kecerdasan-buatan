@@ -149,7 +149,57 @@ print(f"Hasil Filtering: \n{filtered_tokens}")
 ## 3. Recurrent Neural Network (RNN)
 Recurrent neural network (RNN) adalah sistem algoritma tertua yang telah dikembangkan sejak tahun 1980-an. Sebagai sebuah sistem algoritma, Recurrent neural network dapat mengingat input dan selanjutnya memberikan output sesuai dengan yang diinginkan. Memori internal menjadi poin penting dalam Recurrent neural network karena dapat memprediksi hal berikutnya. Sehingga, Recurrent neural network sangat cocok untuk diaplikasikan pada deret waktu, mesin pencarian, teks, audio, video, bahkan mesin keuangan.
 
-### Basic RNN vs FNN
+![RNN](./images/rnn.jpg)
+
+```python
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, SimpleRNN, Dense
+
+# Parameter Model
+vocab_size = 5000    # Jumlah kosakata unik
+embedding_dim = 64   # Dimensi vektor kata
+max_length = 100     # Panjang maksimal kalimat
+
+# Membangun Arsitektur RNN
+model = Sequential([
+    # 1. Layer Embedding: Mengubah angka (token) menjadi vektor padat
+    Embedding(vocab_size, embedding_dim, input_length=max_length),
+    
+    # 2. Layer SimpleRNN: Inti dari pemrosesan sekuensial
+    # units=32 adalah jumlah hidden neurons
+    SimpleRNN(units=32, dropout=0.2, recurrent_dropout=0.2),
+    
+    # 3. Dense Layer: Untuk klasifikasi akhir
+    Dense(16, activation='relu'),
+    
+    # 4. Output Layer: Sigmoid digunakan untuk klasifikasi biner (Positif/Negatif)
+    Dense(1, activation='sigmoid')
+])
+
+# Kompilasi Model
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+
+model.summary()
+```
+
+##### a. Embedding
+Mengubah representasi angka (ID kata) menjadi vektor yang menangkap hubungan semantik antar kata.
+
+##### b. SimpleRNN
+Layer yang melakukan perulangan (loop) melalui urutan kata. Argumen dropout digunakan untuk mencegah overfitting.
+
+##### c. Dense
+Lapisan saraf standar untuk melakukan pengolahan fitur hasil dari RNN.
+
+##### d. Output (Sigmoid)
+Menghasilkan nilai antara 0 dan 1. Jika $> 0.5$, teks diklasifikasikan sebagai kategori 1 (misal: Positif).
+
+#### Basic RNN vs FNN
 ![RNN vs FNN](./images/RNN-vs-FNN-660.png)
 
 **a. Feedforward Neural Networks (FNN)** memproses data dalam satu arah dari input ke output tanpa menyimpan informasi dari input sebelumnya. Hal ini membuat mereka cocok untuk tugas-tugas dengan input independen seperti klasifikasi gambar. Namun, FNN tidak cocok untuk data berurutan karena kekurangan memori.
