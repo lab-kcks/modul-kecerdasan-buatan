@@ -151,12 +151,19 @@ Recurrent neural network (RNN) adalah sistem algoritma tertua yang telah dikemba
 
 ![RNN](./images/rnn.jpg)
 
-#### Basic RNN vs FNN
+### a. Basic RNN vs FNN
 ![RNN vs FNN](./images/RNN-vs-FNN-660.png)
 
-**a. Feedforward Neural Networks (FNN)** memproses data dalam satu arah dari input ke output tanpa menyimpan informasi dari input sebelumnya. Hal ini membuat mereka cocok untuk tugas-tugas dengan input independen seperti klasifikasi gambar. Namun, FNN tidak cocok untuk data berurutan karena kekurangan memori.
+**- Feedforward Neural Networks (FNN)** memproses data dalam satu arah dari input ke output tanpa menyimpan informasi dari input sebelumnya. Hal ini membuat mereka cocok untuk tugas-tugas dengan input independen seperti klasifikasi gambar. Namun, FNN tidak cocok untuk data berurutan karena kekurangan memori.
 
-**b. Recurrent Neural Networks (RNNs)** mengatasi hal ini dengan memasukkan loop yang memungkinkan informasi dari langkah sebelumnya untuk diumpankan kembali ke dalam jaringan. Umpan balik ini memungkinkan RNN untuk mengingat input sebelumnya sehingga ideal untuk tugas-tugas yang membutuhkan konteks.
+**- Recurrent Neural Networks (RNNs)** mengatasi hal ini dengan memasukkan loop yang memungkinkan informasi dari langkah sebelumnya untuk diumpankan kembali ke dalam jaringan. Umpan balik ini memungkinkan RNN untuk mengingat input sebelumnya sehingga ideal untuk tugas-tugas yang membutuhkan konteks.
+
+#### Forward pass and backpropragation through time (BPTT)
+Backpropagation through time (BPTT) adalah metode yang digunakan Recurrent Neural Network (RNN) untuk melatih jaringan dengan merambatkan kesalahan melalui waktu. Dalam FNN, data mengalir melalui jaringan dalam satu arah, dari lapisan input melalui lapisan tersembunyi ke lapisan output. Namun, dalam RNN, ada koneksi antara node dalam langkah waktu yang berbeda, yang berarti bahwa output dari jaringan pada satu langkah waktu tergantung pada input pada langkah waktu tersebut dan juga langkah waktu sebelumnya.
+
+![BPTT](./images/image.png)
+
+#### Implementasi Kode
 
 ```python
 import tensorflow as tf
@@ -194,32 +201,81 @@ model.compile(
 model.summary()
 ```
 
-##### a. Embedding
-Mengubah representasi angka (ID kata) menjadi vektor yang menangkap hubungan semantik antar kata.
+**- Embedding**: Mengubah representasi angka (ID kata) menjadi vektor yang menangkap hubungan semantik antar kata.
 
-##### b. SimpleRNN
-Layer yang melakukan perulangan (loop) melalui urutan kata. Argumen dropout digunakan untuk mencegah overfitting.
+**- SimpleRNN**: Layer yang melakukan perulangan (loop) melalui urutan kata. Argumen dropout digunakan untuk mencegah overfitting.
 
-##### c. Dense
-Lapisan saraf standar untuk melakukan pengolahan fitur hasil dari RNN.
+**- Dense**: Lapisan saraf standar untuk melakukan pengolahan fitur hasil dari RNN.
 
-##### d. Output (Sigmoid)
-Menghasilkan nilai antara 0 dan 1. Jika $> 0.5$, teks diklasifikasikan sebagai kategori 1 (misal: Positif).
+**- Output** (Sigmoid): Menghasilkan nilai antara 0 dan 1. Jika $> 0.5$, teks diklasifikasikan sebagai kategori 1 (misal: Positif).
 
-### Forward pass and backpropragation through time (BPTT)
-Backpropagation through time (BPTT) adalah metode yang digunakan Recurrent Neural Network (RNN) untuk melatih jaringan dengan merambatkan kesalahan melalui waktu. Dalam FNN, data mengalir melalui jaringan dalam satu arah, dari lapisan input melalui lapisan tersembunyi ke lapisan output. Namun, dalam RNN, ada koneksi antara node dalam langkah waktu yang berbeda, yang berarti bahwa output dari jaringan pada satu langkah waktu tergantung pada input pada langkah waktu tersebut dan juga langkah waktu sebelumnya.
-
-![BPTT](./images/image.png)
-
-### LSTM
+### b. LSTM
 Long Short-Term Memory (LSTM) adalah versi pengembangan dari Recurrent Neural Network (RNN) yang dirancang oleh Hochreiter & Schmidhuber. LSTM mampu menangkap dependensi jangka panjang dalam data sekuensial, menjadikannya ideal untuk tugas-tugas seperti terjemahan bahasa, pengenalan suara, dan peramalan time series.
 
 Tidak seperti RNN tradisional yang menggunakan hidden state tunggal yang dilewatkan seiring waktu, LSTM memperkenalkan memory cell yang menyimpan informasi selama periode yang lebih lama, mengatasi tantangan dalam mempelajari dependensi jangka panjang.
 
+#### Mekanisme Kerja LSTM
+Kunci utama yang membedakan LSTM dengan RNN adalah adanya Cell State (jalur horizontal di bagian atas unit) yang berfungsi seperti ban berjalan (conveyor belt). Informasi bisa mengalir di sepanjang cell state dengan sangat stabil. LSTM menggunakan tiga "gerbang" (gates) untuk mengatur arus informasi ini:
+
+- Forget Gate: Menentukan informasi mana dari masa lalu yang harus dibuang dari cell state.
+- Input Gate: Menentukan informasi baru mana yang akan disimpan ke dalam cell state.
+- Output Gate: Menentukan bagian mana dari cell state yang akan dikeluarkan sebagai hidden state untuk langkah waktu berikutnya.
+
+#### Kapan memakai LSTM?
+Gunakan LSTM jika data teks Anda memiliki kalimat yang panjang atau jika konteks di awal kalimat sangat menentukan makna di akhir kalimat (misalnya pada klasifikasi dokumen hukum atau analisis sentimen paragraf panjang). Jika dataset Anda sangat besar dan membutuhkan efisiensi waktu, Anda bisa mempertimbangkan GRU sebagai alternatif yang lebih ringan.
 
 ![LSTM](./images/LSTM.jpg)
 
-### GRU
+#### Implementasi Kode
+```python
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout
+
+# Parameter Model
+vocab_size = 5000    # Ukuran kosakata
+embedding_dim = 128  # Dimensi vektor embedding yang lebih besar untuk LSTM
+max_length = 150     # LSTM mampu menangani urutan yang lebih panjang
+
+# Membangun Arsitektur LSTM
+model = Sequential([
+    # 1. Layer Embedding
+    Embedding(input_dim=vocab_size, output_dim=embedding_dim, input_length=max_length),
+    
+    # 2. Layer LSTM
+    # Menggunakan 64 unit memory cell
+    LSTM(units=64, return_sequences=False, dropout=0.2),
+    
+    # 3. Dense Layer (Fully Connected)
+    Dense(32, activation='relu'),
+    Dropout(0.3), # Tambahan dropout untuk regulasi
+    
+    # 4. Output Layer (Binary Classification)
+    Dense(1, activation='sigmoid')
+])
+
+# Kompilasi Model
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+
+model.summary()
+```
+**- LSTM(units=64):**
+Bagian ini menginisialisasi 64 unit LSTM. Semakin banyak unit, semakin kompleks pola yang bisa dipelajari, namun risiko overfitting dan beban komputasi juga meningkat.
+
+**- return_sequences=False:**
+Secara default bernilai False. Ini berarti layer LSTM hanya akan mengeluarkan hidden state terakhir setelah membaca seluruh kalimat. Jika Anda ingin menumpuk dua layer LSTM (Stacking LSTM), layer pertama harus diatur ke True.
+
+**- dropout=0.2:**
+Digunakan untuk mencegah model terlalu bergantung pada kata-kata tertentu saja (mencegah overfitting). Ini akan secara acak mematikan 20% neuron selama proses pelatihan.
+
+**- Embedding Layer:**
+LSTM membutuhkan input berupa vektor angka yang bermakna. Layer ini mengubah representasi teks menjadi ruang vektor di mana hubungan semantik antar kata dapat dipelajari secara spasial.
+
+### c. GRU
 GRU adalah singkatan dari Gated Recurrent Unit, yaitu jenis arsitektur recurrent neural network (RNN) yang mirip dengan LSTM (Long Short-Term Memory).
 
 Seperti LSTM, GRU dirancang untuk memodelkan data sekuensial dengan memungkinkan informasi diingat atau dilupakan secara selektif seiring waktu. Namun, GRU memiliki arsitektur yang lebih sederhana daripada LSTM, dengan lebih sedikit parameter, yang membuatnya lebih mudah dilatih dan lebih efisien secara komputasi.
@@ -227,7 +283,81 @@ Seperti LSTM, GRU dirancang untuk memodelkan data sekuensial dengan memungkinkan
 Perbedaan utama antara GRU dan LSTM adalah cara mereka menangani memory cell state. Dalam LSTM, memory cell state dipertahankan secara terpisah dari hidden state dan diperbarui menggunakan tiga gate: input gate, output gate, dan forget gate. Dalam GRU, memory cell state digantikan dengan "candidate activation vector", yang diperbarui menggunakan dua gate: reset gate dan update gate.
 
 Reset gate menentukan seberapa banyak hidden state sebelumnya untuk dilupakan, sedangkan update gate menentukan seberapa banyak candidate activation vector untuk digabungkan ke dalam hidden state yang baru.
+
+#### Mekanisme Kerja GRU
+GRU merupakan variasi dari LSTM yang lebih modern (diperkenalkan oleh Cho et al. pada 2014). Jika LSTM memiliki tiga gerbang, GRU menyederhanakannya menjadi hanya dua gerbang utama. Hal ini membuat GRU memiliki parameter yang lebih sedikit, sehingga proses pelatihan biasanya menjadi lebih cepat dan membutuhkan lebih sedikit memori (RAM) dibandingkan LSTM.
+
+- Update Gate: Menggabungkan fungsi forget gate dan input gate pada LSTM. Gerbang ini menentukan seberapa banyak informasi dari masa lalu yang harus tetap dipertahankan dan seberapa banyak informasi baru yang harus dimasukkan.
+- Reset Gate: Menentukan seberapa banyak informasi masa lalu yang harus dilupakan sebelum menggabungkannya dengan input baru untuk membuat "calon" informasi baru (candidate activation).
+
+#### Kapan memakai GRU?
+Karena strukturnya yang lebih ringkas dengan hanya dua gerbang kendali (update dan reset gate), GRU memiliki parameter yang lebih sedikit dibandingkan LSTM, sehingga lebih tahan terhadap risiko overfitting pada dataset berukuran kecil hingga menengah serta lebih hemat penggunaan memori (RAM). Secara praktis, GRU sangat ideal digunakan untuk pemrosesan teks pendek hingga menengah, seperti analisis sentimen pada media sosial atau ulasan produk, di mana kecepatan iterasi model lebih diutamakan daripada kemampuan menyimpan memori jangka sangat panjang yang sangat kompleks.
+
 ![GRU](./images/GRU.jpg)
 
+#### Implementasi Kode
+```python
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, GRU, Dense, Dropout
+
+# Parameter Model
+vocab_size = 5000
+embedding_dim = 128
+max_length = 150
+
+# Membangun Arsitektur GRU
+model = Sequential([
+    # 1. Layer Embedding
+    Embedding(input_dim=vocab_size, output_dim=embedding_dim, input_length=max_length),
+    
+    # 2. Layer GRU
+    # Menggunakan 64 units, lebih ringan secara komputasi dibanding LSTM
+    GRU(units=64, return_sequences=False, dropout=0.2),
+    
+    # 3. Dense Layer
+    Dense(32, activation='relu'),
+    
+    # 4. Output Layer
+    Dense(1, activation='sigmoid')
+])
+
+# Kompilasi Model
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+
+model.summary()
+```
+
+**- GRU(units=64):**
+Menginisialisasi layer GRU dengan 64 unit tersembunyi. Karena strukturnya lebih sederhana (tanpa cell state yang terpisah), GRU seringkali memberikan performa yang hampir setara dengan LSTM namun dengan waktu training yang lebih singkat.
+
+**- dropout=0.2:**
+Sama seperti pada RNN dan LSTM, dropout di sini berfungsi untuk mencegah model "menghafal" data latihan secara berlebihan (overfitting) dengan cara menonaktifkan unit secara acak selama pelatihan.
+
+
 ---
+
 ### Referensi
+#### 1. Dokumentasi Library
+- TensorFlow Keras Layers: Dokumentasi resmi untuk implementasi layer SimpleRNN, LSTM, dan GRU.
+https://www.tensorflow.org/api_docs/python/tf/keras/layers
+
+- NLTK (Natural Language Toolkit): Panduan penggunaan library untuk Tokenization dan Filtering.
+https://www.nltk.org/
+
+- PySastrawi: Dokumentasi khusus untuk Stemming Bahasa Indonesia.
+https://github.com/harperreed/pysastrawi
+
+#### 2. Teori dan Konsep
+- Speech and Language Processing (Jurafsky & Martin): Referensi utama dunia untuk memahami konsep NLP dan Klasifikasi Teks secara mendalam.
+https://web.stanford.edu/~jurafsky/slp3/
+
+- Deep Learning with Python (Francois Chollet): Penjelasan intuitif mengenai cara kerja Embedding dan Sequential Data oleh pencipta Keras.
+https://www.manning.com/books/deep-learning-with-python-second-edition
+
+- Understanding LSTM Networks (Christopher Olah): Artikel paling populer untuk memahami visualisasi dan logika Gates pada LSTM.
+https://colah.github.io/posts/2015-08-Understanding-LSTMs/
