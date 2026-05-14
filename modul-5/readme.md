@@ -1,51 +1,71 @@
-# Generative AI
+﻿# Generative AI
 
-Pada modul ini, kita akan beralih dari model yang bersifat prediktif (discriminative) menuju model yang mampu menciptakan data baru (generative).
+Pada modul ini, kita beralih dari model yang tugasnya **memprediksi label** ke model yang mampu **menghasilkan konten baru**. Fokus utamanya adalah memahami bagaimana Transformer melahirkan LLM modern, lalu melihat bagaimana ide yang sama berkembang ke reasoning, long context, multimodal, dan RAG. Struktur modul ini sengaja **dibuat lebih ringkas**.
 
-## Pengantar Generative AI
+## A Little Brief Description
 
-*Artificial Intelligence* secara umum dapat dibagi menjadi dua paradigma utama berdasarkan cara pandang model terhadap data:
+Secara umum, model AI dapat dibagi menjadi dua cara kerja:
 
-1.  **Discriminative Models:** Model-model ini (seperti CNN untuk klasifikasi citra atau RNN untuk sentimen teks) belajar membedakan atau mengkategorikan data. Secara intuitif, model belajar memetakan $X \rightarrow Y$ (mengubah input menjadi label). Contoh: "Apakah gambar ini anjing atau kucing?"
-2.  **Generative Models:** Model-model ini belajar menangkap distribusi probabilitas dari data itu sendiri, $P(X)$ atau $P(X|Y)$, sehingga mereka mampu **menghasilkan (generate)** sampel data baru yang mirip dengan data latih aslinya. Contoh: "Buatkan saya gambar seekor kucing."
+1. **Discriminative model**
+   Model belajar memetakan input ke dalam label, misalnya `Gambar -> Manusia` atau `Ulasan -> Positif`.
+2. **Generative model**
+   Model belajar pola data itu sendiri, lalu menghasilkan output baru yang masih masuk akal, misalnya `prompt -> paragraf`, `prompt -> gambar`, `prompt -> video` atau `pertanyaan + konteks -> jawaban`.
 
-Generative AI modern sebagian besar didorong oleh arsitektur **Transformer**, yang mampu memproses konteks dalam skala masif secara paralel. Kesuksesan arsitektur ini meledakkan tren Large Language Models (LLM) dan dengan cepat merambah ke modalitas lain (*multimodal*).
+Jika model discriminative mirip seperti dosen yang memeriksa jawaban kemudian memberi nilai, maka model generative lebih mirip dosen yang diminta untuk **menulis contoh jawaban baru** berdasarkan pola yang sudah ia pelajari (*paraphrasing*).
 
-### Jenis Model Generative AI & Frontier Models (2026)
+## Module Information
 
-Lanskap AI generatif berkembang sangat pesat. Berikut adalah kategori utama dan jenis beserta contoh model *frontier* saat ini:
+Modul ini dibagi menjadi tiga bagian yakni:
 
-| Jenis Generative AI | Penjelasan | Contoh Model |
-| :--- | :--- | :--- |
-| **Large Language Models (LLM)** | Model generatif berbasis teks yang dilatih dengan skala triliunan token. Mampu memahami instruksi, coding, merangkum atau hal yang berkaitan dengan komunikasi tekstual. | GPT-5.2, Gemini 3, Claude Opus 4.6, GLM-5|
-| **Vision-Language Model (VLM)** | Model yang mampu menerima dan menghasilkan kombinasi modalitas (misal: prompt teks + gambar -> output teks). | Qwen-VL |
-| **Image Generation** | Model yang menghasilkan gambar fotorealistik atau ilustrasi berdasarkan deskripsi teks (text-to-image). | Stable Diffusion 3/XL, Midjourney v7, DALL-E 3/4, Nano Banana |
-| **Audio & Music Generation** | Menghasilkan suara manusia yang natural (TTS), efek suara, atau bahkan musik komplit. | Whisper (speech recognition), MusicGen, ElevenLabs |
-| **Video Generation** | Menghasilkan rekaman video yang konsisten secara temporal berdasarkan instruksi prompt. | Sora, Runway Gen-3 |
+1. **Dasar Transformers dan LLM**
+2. **Reasoning dan Long Context**
+3. **Multimodal dan RAG**
+
+## Perkembangan LLM Terbaru
+
+Modul ini terakhir di update pada **per 5 April 2026**. Nama model bisa berubah cepat, tetapi tren besarnya relatif stabil.
+
+### 1. LLM bergerak ke arah *agentic workflow*
+
+Model terbaru tidak hanya sekedar berperan sebagai penjawab untuk diberi pertanyaan, tetapi juga mulai memilih *tools* yang tepat untuk menyelesaikan tugas. Contohnya adalah model yang dapat menggabungkan *reasoning*, *browsing*, analisis file, dan *coding* dalam bagian kapabilitasnya.
+
+### 2. Reasoning menjadi fitur utama
+
+Semakin banyak model memiliki mode *thinking* untuk dijadikan jawaban terhadap soal yang lebih kompleks dimana butuh lebih dari sekedar *straight answer* (membutuhkan *step by step*) untuk menjawabnya. Ini menunjukkan bahwa kemajuan LLM tidak lagi hanya datang dari besaran parameter yang digunakan, tetapi juga dari cara model menggunakan waktu berpikir saat proses inferensi.
+
+### 3. Open-weight model makin kompetitif
+
+Jika dulu model *frontier* hampir selalu identik dengan *closed model* yang tidak di-"*opensource*", sekarang model *open-weight* juga bergerak sangat cepat dan cenderung bersifat eksponensial. Perkembangan ini penting utamanya untuk dunia akademik karena lebih realistis untuk digunakan dalam eksperimen, deployment lokal, dan praktikum karena fleksibilitas mekanisme hukumnya.
+
+### 4. Context window membesar, tetapi tidak otomatis lebih paham
+
+Model sekarang dapat membaca konteks yang jauh lebih panjang. Namun, konteks besar tetap memiliki batas dalam pengaplikasiannya dimana biaya komputasi lebih mahal, latensi lebih tinggi, dan performa model cenderung menurun seiring dengan semakin banyaknya konteks.
+
+### 5. Multimodal mulai menjadi baseline
+
+LLM modern tidak lagi hanya berurusan dengan teks. Banyak model terbaru sudah dirancang dan dikembangkan untuk memproses teks, gambar, dan dokumen visual dalam satu model.
+
+### Contoh Model yang Sering Dibahas Saat Ini
+
+![LLM Rank](./images/llm-rank.png)
+
+- **OpenAI**: GPT-5 series, o series dan gpt-oss
+- **Anthropic**: Claude Opus & Sonnet
+- **Google**: Gemini & Gemma Family
+- **Alibaba / Qwen**: Qwen3.6
 
 ---
 
 ## Daftar Isi
 
-1.  **[01. Transformers: Arsitektur Dasar Mutakhir](01-transformers.md)**
+1. **[01. Dasar Transformers dan LLM](01-dasar-transformers-dan-llm.md)**
 
-    Mempelajari *Self-Attention* dan mekanisme dasar *Transformer* yang menjadi tulang punggung revolusi AI modern.
-2.  **[02. Large Language Models (LLM)](02-llm.md)**
+2. **[02. Reasoning dan Long Context](02-reasoning-dan-long-context.md)**
 
-    Memahami properti LLM (Tokens, Parameters, Context Window, dan *Mixture-of-Experts*).
-3.  **[03. Reasoning Models](03-reasoning-models.md)**
-
-    Mempelajari bagaimana model berevolusi dari sekadar menebak kata berikutnya menjadi entitas yang mampu mempertimbangkan *multi-step logic* (melalui mekanisme *Reinforcement Learning*).
-4.  **[04. Long Context Models](04-long-context-models.md)**
-    
-    Mempelajari teknik yang memungkinkan model saat ini untuk dapat memproses hingga jutaan rentetan token sekaligus.
-5.  **[05. Multimodal Learning](05-multimodal-learning.md)**
-    
-    Memahami bagaimana AI mulai mengawinkan modalitas bahasa dengan visual (citra, video) beserta intuisinya (*Contrastive Learning*).
-6.  **[06. Retrieval-Augmented Generation (RAG)](06-rag.md)**
-
-    Teknik yang sering digunakan industri untuk "mencangkokkan" pengetahuan/database eksternal langsung ke sebuah LLM agar jawaban relevan dan tervalidasi berdasarkan dataset lokal tanpa perlu melakukan *fine-tuning*.
+3. **[03. Multimodal dan RAG](03-multimodal-dan-rag.md)**
 
 ---
-**Catatan Penting:** 
-*   *Semua skrip (*pseudocode* maupun implementasi notebook) dapat ditemukan di [direktori code/](./code).*
+
+**Catatan Penting**
+
+*Pseudocode* ada di [direktori code/](./code).
