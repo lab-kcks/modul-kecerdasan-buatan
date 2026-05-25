@@ -1,4 +1,4 @@
-﻿# Generative AI
+# Generative AI
 
 Pada modul ini, kita beralih dari model yang tugasnya **memprediksi label** ke model yang mampu **menghasilkan konten baru**. Fokus utamanya adalah memahami bagaimana Transformer melahirkan LLM modern, lalu melihat bagaimana ide yang sama berkembang ke reasoning, long context, multimodal, dan RAG. Struktur modul ini sengaja **dibuat lebih ringkas**.
 
@@ -15,11 +15,12 @@ Jika model discriminative mirip seperti dosen yang memeriksa jawaban kemudian me
 
 ## Module Information
 
-Modul ini dibagi menjadi tiga bagian yakni:
+Modul ini dibagi menjadi empat bagian yakni:
 
 1. **Dasar Transformers dan LLM**
 2. **Reasoning dan Long Context**
 3. **Multimodal dan RAG**
+4. **Evaluasi dan Metrik**
 
 ## Perkembangan LLM Terbaru
 
@@ -63,6 +64,8 @@ LLM modern tidak lagi hanya berurusan dengan teks. Banyak model terbaru sudah di
 2. **[02. Reasoning dan Long Context](02-reasoning-dan-long-context.md)**
 
 3. **[03. Multimodal dan RAG](03-multimodal-dan-rag.md)**
+
+4. **[04. Evaluasi dan Metrik](04-evaluasi-dan-metrik.md)**
 
 ---
 
